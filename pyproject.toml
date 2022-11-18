@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "rlm-prometheus"
+version = "0.1.0"
+description = "Prometheus metrics collector and exporter for RLM (Reprise License Manager)"
+authors = ["Niko Ehrenfeuchter <nikolaus.ehrenfeuchter@unibas.ch>"]
+license = "GPLv3"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+requests = "^2.28.1"
+pandas = "^1.5.1"
+python-box = "^6.1.0"
+loguru = "^0.6.0"
+prometheus-client = "^0.15.0"
+lxml = "^4.9.1"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.10.0"
+pylint = "^2.15.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,20 @@
+/.vscode/
+*.code-workspace
+/*sandbox*.py
+
+# testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Python bytecode, eggs, build and dist, ...
+*.pyc
+src/*.egg-info/
+/build/
+/dist/
+
+# documentation (auto-generated and build results)
+docs/build/
+
+# virtualenv
+/.venv/

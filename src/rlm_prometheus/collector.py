@@ -10,11 +10,11 @@ class RlmCollector:
     """Abstract base collector class."""
 
     def __init__(self, config):
-        log.trace(f"Instantiating {self.__class__}...")
+        # log.trace(f"Instantiating {self.__class__}...")
         self.base_uri = f"http://{config.rlm_host}:{config.rlm_port}"
+        log.debug(f"Using base URI: [{self.base_uri}]")
         self.uri = None
         self.postdata = None
-        log.debug(f"Using base URI: [{self.base_uri}]")
 
     def collect(self):
         """Request metrics from RLM and parse them into a dataframe.
@@ -23,6 +23,7 @@ class RlmCollector:
         -------
         list[DataFrame]
         """
+        log.trace(f"Collecting data from [{self.uri}]...")
         try:
             # response = requests.post(self.uri, data=self.postdata, timeout=5)
             # tables = pd.read_html(response.text, header=0)

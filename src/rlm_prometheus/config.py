@@ -6,7 +6,16 @@ from box import Box
 
 def load_config_file(filename):
     """Assemble a config object by loading values from a file."""
-    raise NotImplementedError
+    config = Box.from_yaml(filename=filename)
+    if "rlm_port" not in config.keys():
+        config.rlm_port = "5054"
+    if "rlm_host" not in config.keys():
+        config.rlm_host = "localhost"
+    if "exporter_port" not in config.keys():
+        config.exporter_port = "8909"
+    if "isv" not in config.keys():
+        raise ValueError("Config is missing setting for 'isv'!")
+    return config
 
 
 def get_config_from_env():

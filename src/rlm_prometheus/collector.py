@@ -25,9 +25,12 @@ class RlmCollector:
         """
         log.trace(f"Collecting data from [{self.uri}]...")
         try:
-            # response = requests.post(self.uri, data=self.postdata, timeout=5)
-            # tables = pd.read_html(response.text, header=0)
-            tables = pd.read_html("rlmstat_lic_process.html", header=0)
+            html = self.uri
+            if html[0:4] == "http":  # it URI starts with 'http' request the data:
+                response = requests.post(self.uri, data=self.postdata, timeout=5)
+                html = response.text
+
+            tables = pd.read_html(html, header=0)
         except Exception as err:  # pylint: disable-msg=broad-except
             log.error(f"Failed to collect or parse RLM metrics: {err}")
             return None

@@ -17,7 +17,7 @@ class RlmProductMetrics:
             ),
             "inuse": Gauge(
                 name="rlm_product_inuse_total",
-                documentation="licenses currently in use",
+                documentation="licenses currently in use / checked out",
                 labelnames=["isv", "product"],
             ),
         }

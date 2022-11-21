@@ -7,7 +7,7 @@ from loguru import logger as log
 
 class RlmCollector:
     def __init__(self, config):
-        log.debug("Instantiating RlmCollector...")
+        log.trace(f"Instantiating {self.__class__}...")
         self.base_uri = f"http://{config.rlm_host}:{config.rlm_port}"
         self.uri = None
         self.postdata = None

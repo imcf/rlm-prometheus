@@ -45,6 +45,7 @@ def run_rlm_exporter(verbose, config):
 
     start_http_server(configuration.exporter_port)
     metrics = RlmProductMetrics(configuration, isv="bitplane")
+    log.debug(f"Starting metrics collection, interval {configuration.interval}s.")
     while True:
         log.trace("Updating pool status...")
         try:
@@ -55,4 +56,4 @@ def run_rlm_exporter(verbose, config):
             metrics.update_metrics()
         except Exception as err:  # pylint: disable-msg=broad-except
             log.error(f"Updating metrics failed: {err}")
-        sleep(60)
+        sleep(configuration.interval)

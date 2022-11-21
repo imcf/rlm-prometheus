@@ -49,10 +49,6 @@ def run_rlm_exporter(verbose, config):
     while True:
         log.trace("Updating pool status...")
         try:
-            metrics.collector.collect()
-        except Exception as err:  # pylint: disable-msg=broad-except
-            log.error(f"Collecting new data failed: {err}")
-        try:
             metrics.update_metrics()
         except Exception as err:  # pylint: disable-msg=broad-except
             log.error(f"Updating metrics failed: {err}")

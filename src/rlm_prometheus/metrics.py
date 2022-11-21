@@ -24,7 +24,11 @@ class RlmProductMetrics:
 
     def update_metrics(self):
         log.debug("Updating metrics...")
-        tables = self.collector.collect()
+        try:
+            tables = self.collector.collect()
+        except Exception as err:  # pylint: disable-msg=broad-except
+            raise RuntimeError(f"Fetching new data failed: {err}") from err
+
         for _, row in tables[1].iterrows():
             product = row["Product"]
             if "imarisreader" in product:

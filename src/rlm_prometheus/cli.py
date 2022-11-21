@@ -25,9 +25,6 @@ def run_rlm_exporter(verbose, config):
         A path to a configuration file. If `None` the settings will be derived
         from environment variables.
     """
-    # set up logging, loguru requires us to remove the default handler and re-add a new
-    # one with the desired log-level:
-    log.remove()
     level = "WARNING"
     if verbose == 1:
         level = "INFO"
@@ -35,6 +32,9 @@ def run_rlm_exporter(verbose, config):
         level = "DEBUG"
     elif verbose >= 3:
         level = "TRACE"
+    # set up logging, loguru requires us to remove the default handler and
+    # re-add a new one with the desired log-level:
+    log.remove()
     log.add(sys.stderr, level=level)
     log.success(f"Configured logging level to [{level}] ({verbose}).")
 

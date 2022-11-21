@@ -44,7 +44,7 @@ def run_rlm_exporter(verbose, config):
         configuration = get_config_from_env()
 
     start_http_server(configuration.exporter_port)
-    metrics = RlmProductMetrics(configuration, isv="bitplane")
+    metrics = RlmProductMetrics(configuration)
     log.debug(f"Starting metrics collection, interval {configuration.interval}s.")
     while True:
         log.trace("Updating pool status...")

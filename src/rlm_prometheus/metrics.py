@@ -5,10 +5,9 @@ from .collector import LicProcessCollector
 
 
 class RlmProductMetrics:
-    def __init__(self, config, isv):
+    def __init__(self, config):
         self.config = config
-        self.isv = isv
-        self.collector = LicProcessCollector(config, isv)
+        self.collector = LicProcessCollector(config)
         self.gauges = {
             "count": Gauge(
                 name="rlm_product_count_total",
@@ -38,4 +37,4 @@ class RlmProductMetrics:
                     value = float(row[name])
                 except:  # pylint: disable-msg=bare-except
                     continue  # ignore anything that doesn't have a proper value
-                gauge.labels(self.isv, product).set(value)
+                gauge.labels(self.config.isv, product).set(value)

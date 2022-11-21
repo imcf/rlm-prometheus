@@ -32,12 +32,12 @@ class RlmCollector:
 
 
 class LicProcessCollector(RlmCollector):
-    def __init__(self, config, isv):
+    def __init__(self, config):
         log.trace(f"Instantiating {self.__class__}...")
         super().__init__(config)
         self.uri = f"{self.base_uri}/goform/rlmstat_lic_process"
         self.postdata = {
-            "isv": isv,
+            "isv": config.isv,
             "instance": "0",
             "host": "",
             "wb": "rlmstat_lic",

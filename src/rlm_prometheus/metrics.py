@@ -5,6 +5,9 @@ from .collector import LicProcessCollector
 
 
 class RlmProductMetrics:
+
+    """Product metrics class."""
+
     def __init__(self, config):
         self.config = config
         self.collector = LicProcessCollector(config)
@@ -22,6 +25,7 @@ class RlmProductMetrics:
         }
 
     def update_metrics(self):
+        """Call the metrics collector and process the result."""
         log.debug("Updating metrics...")
         try:
             tables = self.collector.collect()

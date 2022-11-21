@@ -6,6 +6,9 @@ from loguru import logger as log
 
 
 class RlmCollector:
+
+    """Abstract base collector class."""
+
     def __init__(self, config):
         log.trace(f"Instantiating {self.__class__}...")
         self.base_uri = f"http://{config.rlm_host}:{config.rlm_port}"
@@ -32,6 +35,9 @@ class RlmCollector:
 
 
 class LicProcessCollector(RlmCollector):
+
+    """Collector for "lic_process" data."""
+
     def __init__(self, config):
         log.trace(f"Instantiating {self.__class__}...")
         super().__init__(config)

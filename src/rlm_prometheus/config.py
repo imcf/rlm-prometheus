@@ -27,7 +27,7 @@ def get_config_from_env():
 
     rlm_host = os.environ.get("RLM_HOST", "localhost")
     rlm_port = os.environ.get("RLM_PORT", "5054")
-    exporter_port = os.environ.get("RLM_PORT", "8909")
+    exporter_port = os.environ.get("RLM_EXPORTER_PORT", "8909")
 
     return Box(
         {

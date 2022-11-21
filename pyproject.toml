@@ -22,6 +22,9 @@ PyYAML = "^6.0"
 black = "^22.10.0"
 pylint = "^2.15.5"
 
+[tool.poetry.scripts]
+rlm_exporter = "rlm_prometheus.cli:run_rlm_exporter"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

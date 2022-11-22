@@ -11,7 +11,7 @@ class RlmCollector:
 
     def __init__(self, config):
         # log.trace(f"Instantiating {self.__class__}...")
-        self.base_uri = f"http://{config.rlm_host}:{config.rlm_port}"
+        self.base_uri = f"{config.rlm_uri}"
         log.debug(f"Using base URI: [{self.base_uri}]")
         self._uri = None
         self.postdata = None
@@ -29,10 +29,23 @@ class RlmCollector:
             raise TypeError("Instance doesn't have its `uri` attribute set!")
         return self._uri
 
-    @uri.setter
-    def uri(self, value):
-        log.trace(f"Setting `uri` value of {self.__class__} to [{value}]...")
-        self._uri = value
+    def set_stats_name(self, value):
+        """Set name of the stats to request and process.
+
+        This method actually sets the `uri` instance attribute depending on the
+        `rlm_uri` configuration value.
+
+        Parameters
+        ----------
+        value : str
+            The name of the stats to request from RLM, e.g. `rlmstat_lic_process`.
+        """
+        if self.base_uri[0:5] == "http:":
+            full_uri = f"{self.base_uri}/goform/{value}"
+        else:
+            full_uri = f"{self.base_uri}/{value}.html"
+        log.trace(f"Setting `uri` value of {self.__class__} to [{full_uri}]...")
+        self._uri = full_uri
 
     def collect(self):
         """Request metrics from RLM and parse them into a dataframe.
@@ -63,7 +76,7 @@ class LicProcessCollector(RlmCollector):
     def __init__(self, config):
         log.trace(f"Instantiating {self.__class__}...")
         super().__init__(config)
-        self.uri = f"{self.base_uri}/goform/rlmstat_lic_process"
+        self.set_stats_name("rlmstat_lic_process")
         self.postdata = {
             "isv": config.isv,
             "instance": "0",

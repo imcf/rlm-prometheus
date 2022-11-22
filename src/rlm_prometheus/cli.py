@@ -19,8 +19,7 @@ from .metrics import RlmProductMetrics
     count=True,
     help="Increase logging verbosity, may be repeated up to 3 times.",
 )
-@click.option("--from-file", type=str)
-def run_rlm_exporter(verbose, config, from_file):
+def run_rlm_exporter(verbose, config):
     """Main CLI entry point for the RLM exporter. Blocking.
 
     Parameters
@@ -30,9 +29,6 @@ def run_rlm_exporter(verbose, config, from_file):
     config : str
         A path to a configuration file. If `None` the settings will be derived
         from environment variables.
-    from_file : str
-        A path to a file to load the metrics data from. If not `None` the
-        collector URI will be set to this path.
     """
     level = "WARNING"
     if verbose == 1:
@@ -54,9 +50,6 @@ def run_rlm_exporter(verbose, config, from_file):
 
     start_http_server(configuration.exporter_port)
     metrics = RlmProductMetrics(configuration)
-    if from_file:
-        metrics.collector.uri = from_file
-        log.success(f"Loading data from filesystem: {from_file}")
 
     log.debug(f"Starting metrics collection, interval {configuration.interval}s.")
     while True:

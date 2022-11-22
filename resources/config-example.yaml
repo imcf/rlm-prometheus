@@ -1,5 +1,11 @@
-rlm_host: localhost
-rlm_port: 5054
+### the URI to read RLM stats from, examples:
+### request from localhost via HTTP:
+# rlm_uri: http://localhost:5054
+### request from a network target via HTTP:
+# rlm_uri: http://licenses.example.xy:5054
+### read from HTML files on the local file system:
+# rlm_uri: file:resources/data
+rlm_uri: http://licenses.example.xy:5054
 isv: bitplane
 exporter_port: 8909
 interval: 60

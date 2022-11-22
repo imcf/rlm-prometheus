@@ -13,8 +13,26 @@ class RlmCollector:
         # log.trace(f"Instantiating {self.__class__}...")
         self.base_uri = f"http://{config.rlm_host}:{config.rlm_port}"
         log.debug(f"Using base URI: [{self.base_uri}]")
-        self.uri = None
+        self._uri = None
         self.postdata = None
+
+    @property
+    def uri(self):
+        """Getter method for the `uri` attribute.
+
+        Raises
+        ------
+        TypeError
+            Raised in case the `uri` attribute is set to `None`.
+        """
+        if self._uri is None:
+            raise TypeError("Instance doesn't have its `uri` attribute set!")
+        return self._uri
+
+    @uri.setter
+    def uri(self, value):
+        log.trace(f"Setting `uri` value of {self.__class__} to [{value}]...")
+        self._uri = value
 
     def collect(self):
         """Request metrics from RLM and parse them into a dataframe.

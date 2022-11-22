@@ -11,9 +11,14 @@ from .config import get_config_from_env, load_config_file
 from .metrics import RlmProductMetrics
 
 
-@click.command()
-@click.option("-v", "--verbose", count=True)
-@click.option("--config", type=str)
+@click.command(help="Run the RLM metrics collector and exporter.")
+@click.option("--config", type=str, help="A YAML configuration file.")
+@click.option(
+    "-v",
+    "--verbose",
+    count=True,
+    help="Increase logging verbosity, may be repeated up to 3 times.",
+)
 @click.option("--from-file", type=str)
 def run_rlm_exporter(verbose, config, from_file):
     """Main CLI entry point for the RLM exporter. Blocking.

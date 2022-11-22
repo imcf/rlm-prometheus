@@ -1,6 +1,7 @@
 /.vscode/
 *.code-workspace
 /*sandbox*.py
+/config*.yaml
 
 # testing
 .pytest_cache/

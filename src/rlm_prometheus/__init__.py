@@ -1,4 +1,4 @@
-"""The `rlm_prometheus` package collects metrics from an RLM instance.
+"""A metrics collector and exporter for an RLM (Reprise License Manager) instance.
 
 .. include:: ../../README.md
 """

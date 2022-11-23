@@ -5,8 +5,9 @@ from time import sleep
 
 import click
 from loguru import logger as log
-from prometheus_client import start_http_server
+from prometheus_client import Info, start_http_server
 
+from . import __version__
 from .config import get_config_from_env, load_config_file
 from .metrics import RlmProductMetrics
 
@@ -41,7 +42,7 @@ def run_rlm_exporter(verbose, config):
     # re-add a new one with the desired log-level:
     log.remove()
     log.add(sys.stderr, level=level)
-    log.success(f"Configured logging level to [{level}] ({verbose}).")
+    log.info(f"Set logging level to [{level}] ({verbose}).")
 
     if config:
         configuration = load_config_file(config)
@@ -51,7 +52,21 @@ def run_rlm_exporter(verbose, config):
     start_http_server(configuration.exporter_port)
     metrics = RlmProductMetrics(configuration)
 
-    log.debug(f"Starting metrics collection, interval {configuration.interval}s.")
+    info = Info(
+        name="rlm_exporter_info",
+        documentation="Information on the RLM metrics collector and exporter service",
+    )
+    info.info(
+        {
+            "version": __version__,
+        }
+    )
+
+    log.success(
+        f"{__package__} {__version__} started, "
+        f"collection interval {configuration.interval}s."
+    )
+
     while True:
         log.trace("Updating pool status...")
         try:

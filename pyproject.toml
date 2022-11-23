@@ -1,23 +1,22 @@
 [tool.poetry]
-name = "rlm-prometheus"
-version = "0.1.0-pre3"
-description = "Prometheus metrics collector and exporter for RLM (Reprise License Manager)"
 authors = ["Niko Ehrenfeuchter <nikolaus.ehrenfeuchter@unibas.ch>"]
-license = "GPLv3"
-readme = "README.md"
+description = "Prometheus metrics collector and exporter for RLM (Reprise License Manager)"
 include = ["resources/systemd/rlm-exporter.service"]
+license = "GPLv3"
+name = "rlm-prometheus"
+readme = "README.md"
+version = "0.1.0-pre3"
 
 [tool.poetry.dependencies]
-python = "^3.9"
-requests = "^2.28.1"
-pandas = "^1.5.1"
-python-box = "^6.1.0"
-loguru = "^0.6.0"
-prometheus-client = "^0.15.0"
-lxml = "^4.9.1"
-click = "^8.1.3"
 PyYAML = "^6.0"
-
+click = "^8.1.3"
+loguru = "^0.6.0"
+lxml = "^4.9.1"
+pandas = "^1.5.1"
+prometheus-client = "^0.15.0"
+python = "^3.9"
+python-box = "^6.1.0"
+requests = "^2.28.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.10.0"
@@ -27,5 +26,5 @@ pylint = "^2.15.5"
 rlm_exporter = "rlm_prometheus.cli:run_rlm_exporter"
 
 [build-system]
-requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]

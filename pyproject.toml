@@ -5,6 +5,7 @@ description = "Prometheus metrics collector and exporter for RLM (Reprise Licens
 authors = ["Niko Ehrenfeuchter <nikolaus.ehrenfeuchter@unibas.ch>"]
 license = "GPLv3"
 readme = "README.md"
+include = ["resources/systemd/rlm-exporter.service"]
 
 [tool.poetry.dependencies]
 python = "^3.10"

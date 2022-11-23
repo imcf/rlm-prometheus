@@ -1,0 +1,26 @@
+### systemd unit file for the RLM Metrics Exporter Service
+
+[Unit]
+Description=Prometheus collector and exporter for Reprise License Manager metrics
+
+
+[Service]
+ExecStart=/opt/rlm-exporter/bin/rlm_exporter
+### notify systemd once the service is up and running
+# Type=notify
+Type=simple
+User=rlmexporter
+Restart=on-failure
+### disable output buffering, messages should appear directly in systemd's logs:
+Environment=PYTHONUNBUFFERED=1
+
+### specific configuration for the RLM exporter service:
+# Environment=RLM_ISV=example_isv
+# Environment=RLM_URI=http://license-server.example.xy:5054
+# Environment=RLM_EXPORTER_PORT=8909
+# Environment=RLM_EXPORTER_INTERVAL=60
+
+[Install]
+### start the service when the system boots (assuming the service is enabled):
+WantedBy=default.target
+

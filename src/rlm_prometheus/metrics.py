@@ -1,3 +1,5 @@
+"""Metrics for the RLM collector."""
+
 from loguru import logger as log
 from prometheus_client import Gauge
 

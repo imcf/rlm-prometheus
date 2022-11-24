@@ -8,8 +8,13 @@ instance.
 Example installation on Debian / Ubuntu:
 
 ```bash
+# required for creating Python virtualenvs:
 apt install python3-venv
+
+# create a virtualenv in /opt:
 python3 -m venv /opt/rlm-exporter
+
+# update 'pip' and install the 'rlm-exporter' package:
 /opt/rlm-exporter/bin/pip install --upgrade pip
 /opt/rlm-exporter/bin/pip install rlm-exporter
 ```

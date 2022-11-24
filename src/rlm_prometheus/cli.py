@@ -59,6 +59,7 @@ def run_rlm_exporter(verbose, config):
     info.info(
         {
             "version": __version__,
+            "collection_interval": f"{configuration.interval}s",
         }
     )
 

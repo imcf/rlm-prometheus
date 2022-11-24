@@ -2,10 +2,10 @@
 authors = ["Niko Ehrenfeuchter <nikolaus.ehrenfeuchter@unibas.ch>"]
 description = "Prometheus metrics collector and exporter for RLM (Reprise License Manager)"
 include = ["resources/systemd/rlm-exporter.service"]
-license = "GPLv3"
+license = "GPL-3.0-or-later"
 name = "rlm-prometheus"
 readme = "README.md"
-version = "0.1.1-pre0"
+version = "0.1.1-pre1"
 
 homepage = "https://pypi.org/project/rlm-prometheus/"
 keywords = ["prometheus", "metrics", "license-metrics"]

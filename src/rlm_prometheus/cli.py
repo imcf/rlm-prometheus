@@ -53,7 +53,7 @@ def run_rlm_exporter(verbose, config):
     metrics = RlmProductMetrics(configuration)
 
     info = Info(
-        name="rlm_exporter_info",
+        name="rlm_exporter",
         documentation="Information on the RLM metrics collector and exporter service",
     )
     info.info(

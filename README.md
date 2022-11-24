@@ -39,6 +39,16 @@ Environment=RLM_ISV=example_isv
 Environment=RLM_URI=http://license-server.example.xy:5054
 ```
 
+Finally enable the service and start it right away. The second line will show
+the log messages on the console until `Ctrl+C` is pressed. This way you should
+be able to tell if the service has started up properly and is providing metrics
+on the configured port:
+
+```bash
+systemctl enable --now rlm-exporter.service
+journalctl --follow --unit rlm-exporter
+```
+
 ## Firewall settings for RLM on Windows
 
 For the metrics collection it is obviously necessary the exporter can gather data from

@@ -56,8 +56,8 @@ your RLM instance. The standard approach is to send requests to RLM's built-in w
 server. By default access to it is blocked and those restrictions should not be lifted
 more than necessary.
 
-We're providing an example snippet in [Open-RlmFirewallPort.ps1][2] to demonstrate how
-to adjust the Windows firewall so the collector host's IP address is enabled to connect
+There is an example snippet in [Open-RlmFirewallPort.ps1][2] that demonstrates how to
+adjust the Windows firewall so the collector's host IP address is allowed to connect
 to RLM.
 
 [1]: https://prometheus.io/

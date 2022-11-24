@@ -6,8 +6,6 @@ Description=Prometheus collector and exporter for Reprise License Manager metric
 
 [Service]
 ExecStart=/opt/rlm-exporter/bin/rlm_exporter
-### notify systemd once the service is up and running
-# Type=notify
 Type=simple
 User=rlmexporter
 Restart=on-failure

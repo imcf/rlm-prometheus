@@ -7,6 +7,10 @@ name = "rlm-prometheus"
 readme = "README.md"
 version = "0.1.1-pre0"
 
+homepage = "https://pypi.org/project/rlm-prometheus/"
+keywords = ["prometheus", "metrics", "license-metrics"]
+repository = "https://github.com/imcf/rlm-prometheus"
+
 [tool.poetry.dependencies]
 PyYAML = "^6.0"
 click = "^8.1.3"

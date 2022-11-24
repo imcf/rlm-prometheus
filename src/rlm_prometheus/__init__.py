@@ -3,4 +3,4 @@
 .. include:: ../../README.md
 """
 
-__version__ = "0.1.0-pre12"
+__version__ = "0.1.1-pre0"

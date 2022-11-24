@@ -5,7 +5,7 @@ include = ["resources/systemd/rlm-exporter.service"]
 license = "GPLv3"
 name = "rlm-prometheus"
 readme = "README.md"
-version = "0.1.0-pre12"
+version = "0.1.1-pre0"
 
 [tool.poetry.dependencies]
 PyYAML = "^6.0"

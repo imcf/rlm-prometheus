@@ -4,6 +4,72 @@ import pandas as pd
 import requests
 from loguru import logger as log
 
+from prometheus_client import Summary
+
+
+HTTP_REQUEST_TIME = Summary(
+    "rlm_request_response_seconds", "time spent waiting for RLM to return data"
+)
+HTML_PARSING_TIME = Summary(
+    "rlm_parse_data_seconds", "time spent parsing data from the RLM response"
+)
+
+
+@HTTP_REQUEST_TIME.time()
+def send_http_request(url, data, timeout):
+    """Wrapper for sending (and timing) an HTTP POST request.
+
+    Parameters are identical to those of `requests.post()` with the same names.
+
+    Exceptions are silenced into log messages as they shouldn't be passed on
+    when running in service mode.
+
+    Returns
+    -------
+    str or None
+        The `text` property of the response object created by the `post()` call
+        or `None` in case the call raised an exception.
+    """
+    try:
+        response = requests.post(url=url, data=data, timeout=timeout)
+    except Exception as err:  # pylint: disable-msg=broad-except
+        log.error(f"Failed fetching data from RLM: {err}")
+        return None
+
+    return response.text
+
+
+@HTML_PARSING_TIME.time()
+def parse_html_into_dataframes(html, header):
+    """Wrapper for parsing the RLM data into a dataframe (and timing it).
+
+    Exceptions are silenced into log messages as they shouldn't be passed on
+    when running in service mode.
+
+    Parameters
+    ----------
+    html : str
+        The HTML containing the tables to be parsed by Pandas.
+    header : int or list-like
+        The row to use to make the column headers, passed on directly to the
+        `read_html()` call.
+
+    Returns
+    -------
+    list(pandas.DataFrame) or None
+        A list of dataframe objects, one per table, or `None` in case parsing
+        the data failed or the input was `None`.
+    """
+    if html is None:  # happens if the HTTP request failed
+        return None
+    try:
+        tables = pd.read_html(html, header=header)
+    except Exception as err:  # pylint: disable-msg=broad-except
+        log.error(f"Failed parsing tables from HTML: {err}")
+        return None
+
+    return tables
+
 
 class RlmCollector:
 
@@ -55,16 +121,11 @@ class RlmCollector:
         list[DataFrame]
         """
         log.trace(f"Collecting data from [{self.uri}]...")
-        try:
-            html = self.uri
-            if html[0:4] == "http":  # it URI starts with 'http' request the data:
-                response = requests.post(self.uri, data=self.postdata, timeout=5)
-                html = response.text
+        html = self.uri
+        if html[0:4] == "http":  # it URI starts with 'http' request the data:
+            html = send_http_request(url=self.uri, data=self.postdata, timeout=5)
 
-            tables = pd.read_html(html, header=0)
-        except Exception as err:  # pylint: disable-msg=broad-except
-            log.error(f"Failed to collect or parse RLM metrics: {err}")
-            return None
+        tables = parse_html_into_dataframes(html, header=0)
 
         return tables
 

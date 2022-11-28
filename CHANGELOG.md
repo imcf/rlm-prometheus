@@ -5,6 +5,7 @@
 * New configuration setting `RLM_IGNORE_PRODUCTS` (environment) /
   `ignoreproducts` (file) to supply a regular expression for product names that
   should be ignored in the metrics.
+* Add timing metrics for the HTTP requests and the parsing operations.
 
 ## 0.1.1
 

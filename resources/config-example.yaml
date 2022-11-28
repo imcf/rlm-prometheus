@@ -9,4 +9,5 @@ rlm_uri: http://licenses.example.xy:5054
 isv: bitplane
 exporter_port: 8909
 interval: 60
+### a regular expression of product names to ignore in the metrics:
 ignoreproducts: (productname|another|foo)

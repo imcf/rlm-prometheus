@@ -57,7 +57,7 @@ class RlmProductMetrics:
             product = row["Product"]
             if self.ignoreproducts and self.ignoreproducts.findall(product):
                 # log.trace(f"Ignoring product '{product}'...")
-                continue  # ignore readers
+                continue
             for name, gauge in self.gauges.items():
                 try:
                     value = float(row[name])

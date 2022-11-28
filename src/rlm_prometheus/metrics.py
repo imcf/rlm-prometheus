@@ -16,7 +16,7 @@ class RlmProductMetrics:
         log.trace(f"Instantiating {self.__class__}...")
         self.config = config
         self.collector = LicProcessCollector(config)
-        self.gauges = {
+        self.pool_gauges = {
             "count": Gauge(
                 name="rlm_product_count_total",
                 documentation="total licenses in product pool",
@@ -58,7 +58,7 @@ class RlmProductMetrics:
             if self.ignoreproducts and self.ignoreproducts.findall(product):
                 # log.trace(f"Ignoring product '{product}'...")
                 continue
-            for name, gauge in self.gauges.items():
+            for name, gauge in self.pool_gauges.items():
                 try:
                     value = float(row[name])
                 except:  # pylint: disable-msg=bare-except

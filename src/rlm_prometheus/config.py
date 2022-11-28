@@ -28,6 +28,7 @@ def get_config_from_env():
     rlm_uri = os.environ.get("RLM_URI", "http://localhost:5054")
     exporter_port = int(os.environ.get("RLM_EXPORTER_PORT", 8909))
     interval = int(os.environ.get("RLM_EXPORTER_INTERVAL", 60))
+    ignoreproducts = os.environ.get("RLM_IGNORE_PRODUCTS", None)
 
     return Box(
         {
@@ -35,5 +36,6 @@ def get_config_from_env():
             "exporter_port": exporter_port,
             "interval": interval,
             "isv": isv,
+            "ignoreproducts": ignoreproducts,
         }
     )

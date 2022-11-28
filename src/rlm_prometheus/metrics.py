@@ -1,5 +1,7 @@
 """Metrics for the RLM collector."""
 
+import re
+
 from loguru import logger as log
 from prometheus_client import Gauge
 
@@ -26,6 +28,10 @@ class RlmProductMetrics:
                 labelnames=["isv", "product"],
             ),
         }
+        self.ignoreproducts = config.get("ignoreproducts", None)
+        if self.ignoreproducts:
+            log.debug(f"Metrics will ignore products matching '{self.ignoreproducts}'.")
+            self.ignoreproducts = re.compile(self.ignoreproducts)
 
     def update_metrics(self):
         """Call the metrics collector and process the result."""
@@ -49,7 +55,8 @@ class RlmProductMetrics:
 
         for _, row in pool_status.iterrows():
             product = row["Product"]
-            if "imarisreader" in product:
+            if self.ignoreproducts and self.ignoreproducts.findall(product):
+                # log.trace(f"Ignoring product '{product}'...")
                 continue  # ignore readers
             for name, gauge in self.gauges.items():
                 try:

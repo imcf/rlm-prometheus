@@ -9,3 +9,4 @@ rlm_uri: http://licenses.example.xy:5054
 isv: bitplane
 exporter_port: 8909
 interval: 60
+ignoreproducts: (productname|another|foo)

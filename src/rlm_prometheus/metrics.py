@@ -45,8 +45,10 @@ class RlmProductMetrics:
         # one single table, otherwise it should have two:
         count = len(tables)
         if count == 1:
+            log.trace("Parsed 1 table, assuming pool status data.")
             pool_status = tables[0]
         elif count == 2:
+            log.trace("Parsed 2 tables, assuming license and pool status data.")
             pool_status = tables[1]
         else:
             raise ValueError(
@@ -58,6 +60,7 @@ class RlmProductMetrics:
             if self.ignoreproducts and self.ignoreproducts.findall(product):
                 # log.trace(f"Ignoring product '{product}'...")
                 continue
+            log.trace(f"Processing pool status for product {product}...")
             for name, gauge in self.pool_gauges.items():
                 try:
                     value = float(row[name])

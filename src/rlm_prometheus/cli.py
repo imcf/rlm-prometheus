@@ -50,6 +50,7 @@ def run_rlm_exporter(verbose, config):
         configuration = get_config_from_env()
 
     start_http_server(configuration.exporter_port)
+    log.success(f"Providing metrics via HTTP on port {configuration.exporter_port}.")
     metrics = RlmProductMetrics(configuration)
 
     info = Info(

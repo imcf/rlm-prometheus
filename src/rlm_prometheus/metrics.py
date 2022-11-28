@@ -11,6 +11,7 @@ class RlmProductMetrics:
     """Product metrics class."""
 
     def __init__(self, config):
+        log.trace(f"Instantiating {self.__class__}...")
         self.config = config
         self.collector = LicProcessCollector(config)
         self.gauges = {

@@ -48,7 +48,9 @@ systemctl edit rlm-exporter.service
 
 The last command will open an editor with the override configuration of the
 service's unit file. Add a section like this **at the top** of the override
-file, with the bare minimum of setting `RLM_ISV` and most likely also `RLM_URI`:
+file, with the bare minimum of setting `RLM_ISV` and most likely also `RLM_URI`.
+For other options available check for the commented-out lines further down in
+the unit file setting environment variables starting with `RLM_`.
 
 ```text
 [Service]

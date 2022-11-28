@@ -26,8 +26,8 @@ def get_config_from_env():
         raise KeyError("Error getting configuration values:", err) from err
 
     rlm_uri = os.environ.get("RLM_URI", "http://localhost:5054")
-    exporter_port = os.environ.get("RLM_EXPORTER_PORT", 8909)
-    interval = os.environ.get("RLM_EXPORTER_INTERVAL", 60)
+    exporter_port = int(os.environ.get("RLM_EXPORTER_PORT", 8909))
+    interval = int(os.environ.get("RLM_EXPORTER_INTERVAL", 60))
 
     return Box(
         {

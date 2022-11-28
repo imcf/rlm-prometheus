@@ -11,3 +11,5 @@ exporter_port: 8909
 interval: 60
 ### a regular expression of product names to ignore in the metrics:
 ignoreproducts: (productname|another|foo)
+### flag to indicate if license checkout details (user/host) should be included:
+checkout_details: False

@@ -13,6 +13,8 @@ def load_config_file(filename):
         config.exporter_port = 8909
     if "interval" not in config.keys():
         config.interval = 60
+    if "checkout_details" not in config.keys():
+        config.checkout_details = False
     if "isv" not in config.keys():
         raise ValueError("Config is missing setting for 'isv'!")
     return config
@@ -29,6 +31,7 @@ def get_config_from_env():
     exporter_port = int(os.environ.get("RLM_EXPORTER_PORT", 8909))
     interval = int(os.environ.get("RLM_EXPORTER_INTERVAL", 60))
     ignoreproducts = os.environ.get("RLM_IGNORE_PRODUCTS", None)
+    checkout_details = bool(os.environ.get("RLM_CHECKOUT_DETAILS", False))
 
     return Box(
         {
@@ -37,5 +40,6 @@ def get_config_from_env():
             "interval": interval,
             "isv": isv,
             "ignoreproducts": ignoreproducts,
+            "checkout_details": checkout_details,
         }
     )

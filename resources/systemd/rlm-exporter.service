@@ -18,6 +18,7 @@ Environment=PYTHONUNBUFFERED=1
 # Environment=RLM_EXPORTER_PORT=8909
 # Environment=RLM_EXPORTER_INTERVAL=60
 # Environment=RLM_IGNORE_PRODUCTS=(productname|another|foo)
+# Environment=RLM_CHECKOUT_DETAILS=True
 
 [Install]
 ### start the service when the system boots (assuming the service is enabled):

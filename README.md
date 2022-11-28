@@ -19,6 +19,24 @@ python3 -m venv /opt/rlm-exporter
 /opt/rlm-exporter/bin/pip install rlm-exporter
 ```
 
+## Running in foreground mode
+
+This is mostly relevant for testing configuration settings and checking if the
+exporter works as expected - to do this either activate the previously created
+Python environment or call the `rlm_exporter` script using the full path to that
+environment.
+
+For convenience it is reasonable to use a configuration file in such a situation
+instead of setting all the environment variables manually. Simply copy the
+[config-example.yaml][3] file to e.g. `config.yaml` and adjust the settings
+there. Then run the exporter like this:
+
+```bash
+rlm_exporter -vvv --config config.yaml
+```
+
+The exporter running in foreground can be terminated as usual via `Ctrl+C`.
+
 ## Running as a service
 
 ```bash
@@ -62,3 +80,4 @@ to RLM.
 
 [1]: https://prometheus.io/
 [2]: resources/powershell/Open-RlmFirewallPort.ps1
+[3]: resources/config-example.yaml

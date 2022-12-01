@@ -83,6 +83,19 @@ There is an example snippet in [Open-RlmFirewallPort.ps1][2] that demonstrates h
 adjust the Windows firewall so the collector's host IP address is allowed to connect
 to RLM.
 
+## Upgrading
+
+Assuming the exporter has been installed as described above, an upgrade to a
+newer version could be done like this:
+
+```bash
+/opt/rlm-exporter/bin/pip install --upgrade rlm-exporter
+# check the changelog for potentially new configuration settings, integrate them
+# by calling `systemctl edit rlm-exporter.service` if necessary and finally
+# restart the service:
+systemctl restart rlm-exporter.service
+```
+
 [1]: https://prometheus.io/
 [2]: resources/powershell/Open-RlmFirewallPort.ps1
 [3]: resources/config-example.yaml

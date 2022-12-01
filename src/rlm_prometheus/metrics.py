@@ -90,6 +90,13 @@ class RlmProductMetrics:
             log.trace("Not processing checkouts (not requested or none present).")
             return
 
+        # this clearing is required as otherwise previous checkout values that
+        # do not exist in the current response any more (because the license has
+        # been returned) would still keep their old value:
+        for name, gauge in self.license_gauges.items():
+            log.trace(f"Clearing labelsets for gauge {name}...")
+            gauge.clear()
+
         for _, row in checkouts.iterrows():
             product = row["Product"]
             if self.ignoreproducts and self.ignoreproducts.findall(product):

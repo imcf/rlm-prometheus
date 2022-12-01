@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1
+
+* Fixes a bug where returned licenses were incorrectly still reported as
+  *checked-out* or *reserved* in the `rlm_license_checkout` and
+  `rlm_license_reservation` gauges.
+
 ## 0.2.0
 
 * Optionally report metrics on individual license checkouts / reservations.

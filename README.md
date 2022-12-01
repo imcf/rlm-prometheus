@@ -3,6 +3,9 @@
 [Prometheus][1] exporter providing metrics from a Reprise License Manager (RLM)
 instance.
 
+Currently tested on [Debian Linux][4] only, but as it is based on pure
+[CPython][5] it should potentially also work on Windows - YMMV.
+
 ## Installation
 
 Example installation on Debian / Ubuntu:
@@ -83,3 +86,5 @@ to RLM.
 [1]: https://prometheus.io/
 [2]: resources/powershell/Open-RlmFirewallPort.ps1
 [3]: resources/config-example.yaml
+[4]: https://debian.org/
+[5]: https://github.com/python/cpython

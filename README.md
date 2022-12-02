@@ -1,4 +1,4 @@
-# RLM-Prometheus
+# 📊 RLM-Prometheus 📊
 
 [Prometheus][1] exporter providing metrics from a Reprise License Manager (RLM)
 instance.
@@ -6,7 +6,7 @@ instance.
 Currently tested on [Debian Linux][4] only, but as it is based on pure
 [CPython][5] it should potentially also work on Windows - YMMV.
 
-## Installation
+## ⚙🔧 Installation ⚙🔧
 
 Example installation on Debian / Ubuntu:
 
@@ -22,7 +22,7 @@ python3 -m venv /opt/rlm-exporter
 /opt/rlm-exporter/bin/pip install rlm-exporter
 ```
 
-## Running in foreground mode
+## 🏃 Running in foreground mode 🏃
 
 This is mostly relevant for testing configuration settings and checking if the
 exporter works as expected - to do this either activate the previously created
@@ -40,7 +40,7 @@ rlm_exporter -vvv --config config.yaml
 
 The exporter running in foreground can be terminated as usual via `Ctrl+C`.
 
-## Running as a service
+## 👟 Running as a service 👟
 
 ```bash
 adduser --system rlmexporter
@@ -72,7 +72,7 @@ systemctl enable --now rlm-exporter.service
 journalctl --follow --unit rlm-exporter
 ```
 
-## Firewall settings for RLM on Windows
+## 🔥🧱 Firewall settings for RLM on Windows 🔥🧱
 
 For the metrics collection it is obviously necessary the exporter can gather data from
 your RLM instance. The standard approach is to send requests to RLM's built-in web
@@ -97,7 +97,7 @@ rotating its corresponding log files at the same time.
 Example code on how to achieve this via PowerShell is provided in
 [Restart-RlmService.ps1][6].
 
-## Upgrading
+## 🆙 Upgrading 🆙
 
 Assuming the exporter has been installed as described above, an upgrade to a
 newer version could be done like this:
@@ -115,3 +115,4 @@ systemctl restart rlm-exporter.service
 [3]: resources/config-example.yaml
 [4]: https://debian.org/
 [5]: https://github.com/python/cpython
+[6]: resources/powershell/Restart-RlmService.ps1

@@ -74,25 +74,25 @@ journalctl --follow --unit rlm-exporter
 
 ## 🔥🧱 Firewall settings for RLM on Windows 🔥🧱
 
-For the metrics collection it is obviously necessary the exporter can gather data from
-your RLM instance. The standard approach is to send requests to RLM's built-in web
-server. By default access to it is blocked and those restrictions should not be lifted
-more than necessary.
+For the metrics collection it is obviously necessary the exporter can gather
+data from your RLM instance. The standard approach is to send requests to RLM's
+built-in web server. By default access to it is blocked and those restrictions
+should not be lifted more than necessary.
 
-There is an example snippet in [Open-RlmFirewallPort.ps1][2] that demonstrates how to
-adjust the Windows firewall so the collector's host IP address is allowed to connect
-to RLM.
+There is an example snippet in [Open-RlmFirewallPort.ps1][2] that demonstrates
+how to adjust the Windows firewall so the collector's host IP address is allowed
+to connect to RLM.
 
 ## 👾 CAUTION: memory leak in RLM 👾
 
-Requesting data (e.g. every 5 minutes) from RLM's built-in web server has shown
-to increase its memory consumption in a linear fashion over time on our side.
-This indicates a memory leak in RLM, which eventually made the license service
-fail silently.
+Repeatedly requesting data (e.g. every 5 minutes) from RLM's built-in web server
+has shown to increase its memory consumption in a linear fashion over time on
+our side. This indicates a memory leak in RLM, which eventually made the license
+service fail silently.
 
 To avoid (or rather work around) this, we did set up a scheduled task on the
 server hosting the RLM service that is restarting the service once a night while
-rotating its corresponding log files at the same time.
+also rotating its corresponding log files at the same time.
 
 Example code on how to achieve this via PowerShell is provided in
 [Restart-RlmService.ps1][6].

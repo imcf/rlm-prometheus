@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.2
+
+* Logging verbosity can now also be set through `RLM_EXPORTER_VERBOSITY`
+  (environment / systemd) / `verbosity` (file) to allow for increasing verbosity
+  in a systemd unit override file (previously the command line would have been
+  required to be changed, which can't be done in an override file). Using the
+  command line option `-v` or `--verbose` is still supported (the maximum of
+  both will be used in case more than one method for setting the level is
+  used).
+
 ## 0.2.1
 
 * Fixes a bug where returned licenses were incorrectly still reported as
@@ -18,8 +28,8 @@
 
 ## 0.1.1
 
-Package metadata and documentation changes only, no code changes.
+* Package metadata and documentation changes only, no code changes.
 
 ## 0.1.0
 
-First public release.
+* First public release.

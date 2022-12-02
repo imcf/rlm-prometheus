@@ -15,6 +15,8 @@ def load_config_file(filename):
         config.interval = 60
     if "checkout_details" not in config.keys():
         config.checkout_details = False
+    if "verbosity" not in config.keys():
+        config.verbosity = 0
     if "isv" not in config.keys():
         raise ValueError("Config is missing setting for 'isv'!")
     return config
@@ -32,6 +34,7 @@ def get_config_from_env():
     interval = int(os.environ.get("RLM_EXPORTER_INTERVAL", 60))
     ignoreproducts = os.environ.get("RLM_IGNORE_PRODUCTS", None)
     checkout_details = bool(os.environ.get("RLM_CHECKOUT_DETAILS", False))
+    verbosity = int(os.environ.get("RLM_EXPORTER_VERBOSITY", 0))
 
     return Box(
         {
@@ -41,5 +44,6 @@ def get_config_from_env():
             "isv": isv,
             "ignoreproducts": ignoreproducts,
             "checkout_details": checkout_details,
+            "verbosity": verbosity,
         }
     )

@@ -9,6 +9,8 @@ rlm_uri: http://licenses.example.xy:5054
 isv: bitplane
 exporter_port: 8909
 interval: 60
+### logging verbosity: 0=warning, 1=info, 2=debug, 3=trace
+verbosity: 1
 ### a regular expression of product names to ignore in the metrics:
 ignoreproducts: (productname|another|foo)
 ### flag to indicate if license checkout details (user/host) should be included:

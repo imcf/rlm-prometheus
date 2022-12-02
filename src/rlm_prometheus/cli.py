@@ -12,6 +12,32 @@ from .config import get_config_from_env, load_config_file
 from .metrics import RlmProductMetrics
 
 
+def configure_logging(verbose: int):
+    """Configure loguru logging / change log level.
+
+    Parameters
+    ----------
+    verbose : int
+        The desired log level, 0=WARNING (do not change the logger config),
+        1=INFO, 2=DEBUG, 3=TRACE. Higher values will map to TRACE.
+    """
+    if verbose == 0:
+        return
+
+    level = "WARNING"
+    if verbose == 1:
+        level = "INFO"
+    elif verbose == 2:
+        level = "DEBUG"
+    elif verbose >= 3:
+        level = "TRACE"
+    # set up logging, loguru requires us to remove the default handler and
+    # re-add a new one with the desired log-level:
+    log.remove()
+    log.add(sys.stderr, level=level)
+    log.info(f"Set logging level to [{level}] ({verbose}).")
+
+
 @click.command(help="Run the RLM metrics collector and exporter.")
 @click.option("--config", type=str, help="A YAML configuration file.")
 @click.option(
@@ -31,23 +57,17 @@ def run_rlm_exporter(verbose, config):
         A path to a configuration file. If `None` the settings will be derived
         from environment variables.
     """
-    level = "WARNING"
-    if verbose == 1:
-        level = "INFO"
-    elif verbose == 2:
-        level = "DEBUG"
-    elif verbose >= 3:
-        level = "TRACE"
-    # set up logging, loguru requires us to remove the default handler and
-    # re-add a new one with the desired log-level:
-    log.remove()
-    log.add(sys.stderr, level=level)
-    log.info(f"Set logging level to [{level}] ({verbose}).")
+    # do a first logging configuration to respect the command line parameters:
+    configure_logging(verbose)
 
     if config:
         configuration = load_config_file(config)
     else:
         configuration = get_config_from_env()
+
+    # verbosity might have been specified in the config / environment, so again:
+    if configuration.verbosity > 0:
+        configure_logging(max(verbose, configuration.verbosity))
 
     start_http_server(configuration.exporter_port)
     log.success(f"Providing metrics via HTTP on port {configuration.exporter_port}.")

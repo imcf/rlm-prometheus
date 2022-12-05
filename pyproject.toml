@@ -22,7 +22,7 @@ loguru = "^0.6.0"
 lxml = "^4.9.1"
 pandas = "^1.5.1"
 prometheus-client = "^0.15.0"
-python = "^3.9"
+python = "^3.8"
 python-box = "^6.1.0"
 requests = "^2.28.1"
 

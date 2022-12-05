@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0
+
+* Lowers minimum required Python version to 3.8.
+* Fixes setting logging verbosity.
+* Adds example configuration and PowerShell helper scripts to packaged files.
+
 ## 0.2.2
 
 * Logging verbosity can now also be set through `RLM_EXPORTER_VERBOSITY`

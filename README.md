@@ -54,7 +54,10 @@ The last command will open an editor with the override configuration of the
 service's unit file. Add a section like this **at the top** of the override
 file, with the bare minimum of setting `RLM_ISV` and most likely also `RLM_URI`.
 For other options available check for the commented-out lines further down in
-the unit file setting environment variables starting with `RLM_`.
+the unit file setting environment variables starting with `RLM_`. Please note
+that on *Ubuntu 20.04* the `systemct edit` command will present you with an
+empty file, so you will have to copy the respective lines from below or the
+provided *central* unit file.
 
 ```text
 [Service]

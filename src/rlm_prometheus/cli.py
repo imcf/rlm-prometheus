@@ -21,9 +21,6 @@ def configure_logging(verbose: int):
         The desired log level, 0=WARNING (do not change the logger config),
         1=INFO, 2=DEBUG, 3=TRACE. Higher values will map to TRACE.
     """
-    if verbose == 0:
-        return
-
     level = "WARNING"
     if verbose == 1:
         level = "INFO"
@@ -65,9 +62,9 @@ def run_rlm_exporter(verbose, config):
     else:
         configuration = get_config_from_env()
 
-    # verbosity might have been specified in the config / environment, so again:
-    if configuration.verbosity > 0:
-        configure_logging(max(verbose, configuration.verbosity))
+    # verbosity might have been specified in the config / environment:
+    if configuration.verbosity > verbose:
+        configure_logging(configuration.verbosity)
 
     start_http_server(configuration.exporter_port)
     log.success(f"Providing metrics via HTTP on port {configuration.exporter_port}.")

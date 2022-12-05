@@ -12,7 +12,8 @@ Example installation on Debian / Ubuntu:
 
 ```bash
 # required for creating Python virtualenvs:
-apt install python3-venv
+apt update
+apt install -y python3-venv
 
 # create a virtualenv in /opt:
 python3 -m venv /opt/rlm-exporter

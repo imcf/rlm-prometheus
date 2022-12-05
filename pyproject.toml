@@ -9,7 +9,7 @@ include = [
 license = "GPL-3.0-or-later"
 name = "rlm-prometheus"
 readme = "README.md"
-version = "0.2.3-pre0"
+version = "0.3.0"
 
 homepage = "https://pypi.org/project/rlm-prometheus/"
 keywords = ["prometheus", "metrics", "license-metrics"]

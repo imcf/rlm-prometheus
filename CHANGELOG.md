@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.1
+
+* Fixes a bug that was still counting the last returned licenses as
+  *checked-out* and thus prevented the `rlm_license_checkout` counter from ever
+  dropping back to zero.
+
 ## 0.3.0
 
 * Lowers minimum required Python version to 3.8.

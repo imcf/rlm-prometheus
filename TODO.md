@@ -9,3 +9,4 @@
 - [x] allow logging verbosity to be configured through an environment variable
   to make it adjustable from the systemd unit file (otherwise this would require
   the command line to be changed which can't be done in an override file)
+- [ ] unit tests!

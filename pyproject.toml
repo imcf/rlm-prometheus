@@ -33,6 +33,17 @@ pylint = "^2.15.5"
 [tool.poetry.scripts]
 rlm_exporter = "rlm_prometheus.cli:run_rlm_exporter"
 
+[tool.poetry-dynamic-versioning]
+enable = true
+pattern = "^rlm-prometheus-((?P<epoch>\\d+)!)?(?P<base>\\d+(\\.\\d+)*)"
+style = "semver"
+vcs = "git"
+
+[tool.poetry-dynamic-versioning.substitution]
+folders = [
+  {path = "src"},
+]
+
 [build-system]
-build-backend = "poetry.core.masonry.api"
-requires = ["poetry-core"]
+build-backend = "poetry_dynamic_versioning.backend"
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]

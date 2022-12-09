@@ -5,6 +5,9 @@
 * Fixes a bug that was still counting the last returned licenses as
   *checked-out* and thus prevented the `rlm_license_checkout` counter from ever
   dropping back to zero.
+* Switch to [poetry-dynamic-versioning][1] plugin. This brings no functional /
+  code changes, it only affects the way the package is built and how tags and
+  releases are being done.
 
 ## 0.3.0
 
@@ -45,3 +48,5 @@
 ## 0.1.0
 
 * First public release.
+
+[1]: https://pypi.org/project/poetry-dynamic-versioning/

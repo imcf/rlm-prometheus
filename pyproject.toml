@@ -4,7 +4,7 @@ description = "Prometheus metrics collector and exporter for RLM (Reprise Licens
 include = [
   "resources/config-example.yaml",
   "resources/powershell/*.ps1",
-  "resources/systemd/rlm-exporter.service",
+  "resources/systemd/rlm-prometheus.service",
 ]
 license = "GPL-3.0-or-later"
 name = "rlm-prometheus"

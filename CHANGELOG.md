@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.2
+
+No functional changes.
+
+* Fix a few issues in installation instructions, rename and ajust unit file.
+
 ## 0.3.1
 
 * Fixes a bug that was still counting the last returned licenses as

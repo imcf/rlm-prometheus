@@ -76,6 +76,13 @@ systemctl enable --now rlm-prometheus.service
 journalctl --follow --unit rlm-prometheus
 ```
 
+Open ports for the `rlm-prometheus` exporter:
+
+```bash
+SOURCE="any"  # <-- put an IP address here to restrict access more
+ufw allow from $SOURCE to any port 8909
+```
+
 ## 🔥🧱 Firewall settings for RLM on Windows 🔥🧱
 
 For the metrics collection it is obviously necessary the exporter can gather

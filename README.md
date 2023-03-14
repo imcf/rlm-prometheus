@@ -16,11 +16,11 @@ apt update
 apt install -y python3-venv
 
 # create a virtualenv in /opt:
-python3 -m venv /opt/rlm-exporter
+python3 -m venv /opt/rlm-prometheus
 
-# update 'pip' and install the 'rlm-exporter' package:
-/opt/rlm-exporter/bin/pip install --upgrade pip
-/opt/rlm-exporter/bin/pip install rlm-exporter
+# update 'pip' and install the 'rlm-prometheus' package:
+/opt/rlm-prometheus/bin/pip install --upgrade pip
+/opt/rlm-prometheus/bin/pip install rlm-prometheus
 ```
 
 ## 🏃 Running in foreground mode 🏃
@@ -45,9 +45,9 @@ The exporter running in foreground can be terminated as usual via `Ctrl+C`.
 
 ```bash
 adduser --system rlmexporter
-cp -v /opt/rlm-exporter/lib/python*/site-packages/resources/systemd/rlm-exporter.service  /etc/systemd/system/
+cp -v /opt/rlm-prometheus/lib/python*/site-packages/resources/systemd/rlm-prometheus.service  /etc/systemd/system/
 systemctl daemon-reload
-systemctl edit rlm-exporter.service
+systemctl edit rlm-prometheus.service
 ```
 
 The last command will open an editor with the override configuration of the
@@ -72,8 +72,8 @@ be able to tell if the service has started up properly and is providing metrics
 on the configured port:
 
 ```bash
-systemctl enable --now rlm-exporter.service
-journalctl --follow --unit rlm-exporter
+systemctl enable --now rlm-prometheus.service
+journalctl --follow --unit rlm-prometheus
 ```
 
 ## 🔥🧱 Firewall settings for RLM on Windows 🔥🧱
@@ -107,11 +107,11 @@ Assuming the exporter has been installed as described above, an upgrade to a
 newer version could be done like this:
 
 ```bash
-/opt/rlm-exporter/bin/pip install --upgrade rlm-exporter
+/opt/rlm-prometheus/bin/pip install --upgrade rlm-prometheus
 # check the changelog for potentially new configuration settings, integrate them
-# by calling `systemctl edit rlm-exporter.service` if necessary and finally
+# by calling `systemctl edit rlm-prometheus.service` if necessary and finally
 # restart the service:
-systemctl restart rlm-exporter.service
+systemctl restart rlm-prometheus.service
 ```
 
 [1]: https://prometheus.io/

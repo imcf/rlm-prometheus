@@ -5,7 +5,7 @@ Description=Prometheus collector and exporter for Reprise License Manager metric
 
 
 [Service]
-ExecStart=/opt/rlm-exporter/bin/rlm_exporter
+ExecStart=/opt/rlm-prometheus/bin/rlm_exporter
 Type=simple
 User=rlmexporter
 Restart=on-failure

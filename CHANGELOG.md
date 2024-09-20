@@ -5,6 +5,7 @@
 * Raises the minimum supported Python version to 3.9.
 * Adds per-license expiration timestamp (Unix epoch) to the pool gauges (`count`
   and `inuse`).
+* Fixes `numpy` dependency to versions before 2.0.
 
 ## 0.3.2
 

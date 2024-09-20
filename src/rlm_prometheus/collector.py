@@ -30,12 +30,14 @@ def send_http_request(url, data, timeout):
         The `text` property of the response object created by the `post()` call
         or `None` in case the call raised an exception.
     """
+    log.trace(f"Sending HTTP POST: url=[{url}], data=[{data}]")
     try:
         response = requests.post(url=url, data=data, timeout=timeout)
     except Exception as err:  # pylint: disable-msg=broad-except
         log.error(f"Failed fetching data from RLM: {err}")
         return None
 
+    log.trace(f"=-=-=-=-=\n{response.text}\n=-=-=-=-=")
     return response.text
 
 

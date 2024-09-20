@@ -2,6 +2,7 @@
 
 ## 0.4.0
 
+* Raises the minimum supported Python version to 3.9.
 * Adds per-license expiration timestamp (Unix epoch) to the pool gauges (`count`
   and `inuse`).
 

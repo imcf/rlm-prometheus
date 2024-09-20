@@ -18,7 +18,6 @@ repository = "https://github.com/imcf/rlm-prometheus"
 [tool.poetry.urls]
 "Changelog" = "https://github.com/imcf/rlm-prometheus/blob/main/CHANGELOG.md"
 "Organisation Homepage" = "https://imcf.one/"
-"Twitter" = "https://twitter.com/imcf_basel"
 
 [tool.poetry.dependencies]
 PyYAML = "^6.0"

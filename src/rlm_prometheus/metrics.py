@@ -81,7 +81,7 @@ class RlmProductMetrics:
             for name, gauge in self.pool_gauges.items():
                 try:
                     value = float(row[name])
-                except:  # pylint: disable-msg=bare-except
+                except:  # pylint: disable-msg=bare-except  # noqa: E722
                     continue  # ignore anything that doesn't have a proper value
                 gauge.labels(self.config.isv, product).set(value)
 
@@ -107,6 +107,6 @@ class RlmProductMetrics:
                     user = row["user"]
                     host = row["host"]
                     value = float(row[name])
-                except:  # pylint: disable-msg=bare-except
+                except:  # pylint: disable-msg=bare-except  # noqa: E722
                     continue  # ignore anything that doesn't have a proper value
                 gauge.labels(self.config.isv, product, user, host).set(value)

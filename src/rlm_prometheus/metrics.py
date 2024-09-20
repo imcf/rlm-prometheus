@@ -2,6 +2,8 @@
 
 import re
 
+from datetime import datetime
+
 from loguru import logger as log
 from prometheus_client import Gauge
 
@@ -19,12 +21,12 @@ class RlmProductMetrics:
             "count": Gauge(
                 name="rlm_product_count_total",
                 documentation="total licenses in product pool",
-                labelnames=["isv", "product"],
+                labelnames=["isv", "product", "expires"],
             ),
             "inuse": Gauge(
                 name="rlm_product_inuse_total",
                 documentation="licenses currently in use / checked out",
-                labelnames=["isv", "product"],
+                labelnames=["isv", "product", "expires"],
             ),
         }
         self.ignoreproducts = config.get("ignoreproducts", None)
@@ -74,6 +76,13 @@ class RlmProductMetrics:
 
         for _, row in pool_status.iterrows():
             product = row["Product"]
+            expires = 0
+            try:
+                parseddate = datetime.strptime(row["Expires"], r"%d-%b-%Y")
+                expires = parseddate.strftime(r"%s")  # seconds since the epoch
+            except:  # pylint: disable-msg=bare-except  # noqa: E722
+                continue  # ignore anything that doesn't have a proper value
+
             if self.ignoreproducts and self.ignoreproducts.findall(product):
                 # log.trace(f"Ignoring product '{product}'...")
                 continue
@@ -83,7 +92,7 @@ class RlmProductMetrics:
                     value = float(row[name])
                 except:  # pylint: disable-msg=bare-except  # noqa: E722
                     continue  # ignore anything that doesn't have a proper value
-                gauge.labels(self.config.isv, product).set(value)
+                gauge.labels(self.config.isv, product, expires).set(value)
 
         # this clearing is required as otherwise previous checkout values that
         # do not exist in the current response any more (because the license has

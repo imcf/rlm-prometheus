@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.0
+
+* Adds per-license expiration timestamp (Unix epoch) to the pool gauges (`count`
+  and `inuse`).
+
 ## 0.3.2
 
 No functional changes.

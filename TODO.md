@@ -10,3 +10,4 @@
   to make it adjustable from the systemd unit file (otherwise this would require
   the command line to be changed which can't be done in an override file)
 - [ ] unit tests!
+- [x] add "expires" value to product / license metrics

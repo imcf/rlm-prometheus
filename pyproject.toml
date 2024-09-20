@@ -40,7 +40,6 @@ rlm_exporter = "rlm_prometheus.cli:run_rlm_exporter"
 
 [tool.poetry-dynamic-versioning]
 enable = true
-pattern = "^rlm-prometheus-((?P<epoch>\\d+)!)?(?P<base>\\d+(\\.\\d+)*)"
 style = "semver"
 vcs = "git"
 

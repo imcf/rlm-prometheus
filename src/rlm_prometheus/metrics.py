@@ -9,7 +9,6 @@ from .collector import LicProcessCollector
 
 
 class RlmProductMetrics:
-
     """Product metrics class."""
 
     def __init__(self, config):

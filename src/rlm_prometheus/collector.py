@@ -72,7 +72,6 @@ def parse_html_into_dataframes(html, header):
 
 
 class RlmCollector:
-
     """Abstract base collector class."""
 
     def __init__(self, config):
@@ -131,7 +130,6 @@ class RlmCollector:
 
 
 class LicProcessCollector(RlmCollector):
-
     """Collector for "lic_process" data."""
 
     def __init__(self, config):
